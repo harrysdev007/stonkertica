@@ -1,0 +1,1 @@
+import{defineConfig}from'vite';import{proxy}from'./server/proxy.mjs';export default defineConfig({plugins:[{name:'stonk-read-proxy',configureServer(server){server.middlewares.use('/api/stonk',async(req,res)=>{const r=await proxy(req.url,req.method);res.writeHead(r.status,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(r.body)})}}]});

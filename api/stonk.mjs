@@ -1,0 +1,1 @@
+import{proxy}from'../server/proxy.mjs';export default async function handler(req,res){const u=new URL(req.url,'http://localhost');const path=u.searchParams.get('path')||'/stats';const r=await proxy(path,req.method);res.status(r.status).setHeader('Content-Type','application/json');res.end(r.body)}
